@@ -5,6 +5,10 @@ import useAuth from "../context/useAuth";
 const ProfileScreen = () => {
   const { saveLoginState } = useAuth();
 
+  const handleLogout = () => {
+    saveLoginState(false);
+  };
+
   return (
     <View style={styles.container}>
       {/* Banner từ thư mục assets */}
@@ -22,11 +26,7 @@ const ProfileScreen = () => {
 
       {/* Nút Sign Out */}
       <View style={styles.buttonContainer}>
-        <Button
-          title="Sign Out"
-          color="Yellow"
-          onPress={() => saveLoginState(false)}
-        />
+        <Button title="Sign Out" color="Yellow" onPress={handleLogout} />
       </View>
     </View>
   );

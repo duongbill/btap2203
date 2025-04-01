@@ -5,29 +5,27 @@ const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const loadLoginState = async () => {
-      try {
-        const value = await AsyncStorage.getItem("isLoggedIn");
-        console.log("Loaded login state:", value);
-        if (value !== null) {
-          setIsLoggedIn(JSON.parse(value));
-          console.log("Set isLoggedIn to:", JSON.parse(value));
-        }
-      } catch (error) {
-        console.error("Lỗi lấy trạng thái:", error);
-      }
-    };
+    // Load trạng thái đăng nhập khi component mount
     loadLoginState();
   }, []);
 
+  const loadLoginState = async () => {
+    try {
+      const value = await AsyncStorage.getItem("isLoggedIn");
+      if (value !== null) {
+        setIsLoggedIn(JSON.parse(value));
+      }
+    } catch (error) {
+      console.error("Lỗi khi load trạng thái đăng nhập:", error);
+    }
+  };
+
   const saveLoginState = async (value) => {
     try {
-      console.log("Saving login state:", value);
       await AsyncStorage.setItem("isLoggedIn", JSON.stringify(value));
       setIsLoggedIn(value);
-      console.log("Updated isLoggedIn to:", value);
     } catch (error) {
-      console.error("Lỗi lưu trạng thái:", error);
+      console.error("Lỗi khi lưu trạng thái đăng nhập:", error);
     }
   };
 

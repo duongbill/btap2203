@@ -6,7 +6,6 @@ import MainStack from "./navigation/MainStack";
 
 const AppNavigator = () => {
   const { isLoggedIn } = useAuth();
-  console.log("App.js - Current isLoggedIn state:", isLoggedIn);
 
   return (
     <NavigationContainer>
